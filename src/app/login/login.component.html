@@ -1,0 +1,60 @@
+<section class="login-wrp">
+    <div class="inner-blks bg-left">
+        <div class="inner-wrp">
+            <!-- <div class="logo">
+                <img src="../../assets/img/logo-white.svg" alt="logo">
+            </div> -->
+            <div class="desc-area">
+                <div class="title">
+                    Lorem Ipsum<br> Simply Dummy Text
+                </div>
+                <div class="txt-blk">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inner-blks">
+        <div class="form-area login">
+            <div class="logo">
+                <img class="form-logo" src="../../assets/img/logo.png" alt="logo">
+            </div>
+            <div class="form-title">
+                Login
+            </div>
+            <div class="loginDesc">
+               
+            </div>
+     
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+                <div class="inp-wrp">
+                    <span class="inp_ico">
+                        <img src="../../assets/img/icon-mail.svg" alt="usr name">
+                    </span>
+                    <input type="text" class="form-control username" placeholder="User name" formControlName="username" name="username">
+                    <span *ngIf="loginForm.get('username')?.hasError('email') && loginForm.get('username')?.dirty" class="error-txt form-error">*Invalid email</span>
+                    <span *ngIf="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.dirty" class="error-txt form-error">*email is required</span>                </div>
+                
+                <div class="inp-wrp mb-3">
+                    <span class="inp_ico">
+                        <img src="../../assets/img/icon-lock.svg" alt="pw">
+                    </span>
+                    <input [type]="hidepassword?'password':'text'" class="form-control passw" placeholder="Password" formControlName="password" name="password">
+                    <button type="button" [hidden]="!hidepassword" class="eye-icon"><img src="../../assets/img/eye.svg" alt="" (click)="togglePassword()" ></button>
+                    <button type="button" [hidden]="hidepassword" class="eye-icon show"><img src="../../assets/img/icon-eye-slash.svg" alt="" (click)="togglePassword()"></button>
+                    <span *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.hasError('invalidPassword') && !loginForm.get('password')?.hasError('required')" class="error-txt form-error">*Invalid Password</span>
+                    <span *ngIf="loginForm.get('password')?.dirty && loginForm.get('password')?.hasError('required')" class="error-txt form-error">*Password is required</span>        
+                        </div>
+                <a  class="forgotpw">Forgot Password ?</a>
+                
+                <div class="inp-wrp">
+                    <button type="submit" class="btn btn-primary btn-login">
+                        LOGIN
+                    </button>
+                </div>
+
+              
+            </form>
+        </div>
+    </div>
+</section>

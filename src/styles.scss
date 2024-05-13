@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import './assets/scss/common';
+@import './assets/scss/table-common';
+@import './assets/scss/form-designs';
+@import './assets/scss/modal-designs';
+@import './assets/scss/prospect-modal';
+@import 'ngx-toastr/toastr-bs5-alert';

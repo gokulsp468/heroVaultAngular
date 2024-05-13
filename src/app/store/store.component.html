@@ -1,0 +1,449 @@
+<div class="prospect">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="top-sec d-flex">
+             <div class="col-lg-3 col-12 ">
+                <div class="heading left-sec">Store Management</div>
+             </div>
+             <div class=" col-lg-9 col-12">
+                <div class="right-sec">
+                    <div class="search-group mx-2">
+                        <div class="input-group">
+                           <span class="input-group-text"><img src="../../assets/img/search-normal.svg" alt="sch"></span>
+                           <input type="text" class="form-control" placeholder="Search..." #searchBox  (input)="performSearch($event)">
+                           <span class="input-group-text search-clear" (click)="clearSearchBox()"><img src="../../assets/img/modal-close.svg" alt="close"></span>
+                        </div>
+                     </div>
+                     <div class="filter-items">
+                        <div class="filter dropdown mx-2" ngbDropdown #myDrop="ngbDropdown">
+                           <button class="btn-common dropdown-toggle" type="button" id="dropdownBasic1" ngbDropdownToggle >
+                              <span><img src="../../assets/img/filter.svg" alt="filter"></span><span>Filter</span>
+                           </button>
+                           <form  [formGroup]="filterForm" (ngSubmit)="filter()" class="dropdown-menu filter-drp dropdown-menu-end " ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <h3 class="filt-title">
+                                 Filter By
+                              </h3>
+  
+                              <div class="form">
+                                 <div class="row inline-btm">
+                                  
+                                    <div class="col-auto">
+                                       <label for="">Sort By :</label>
+                                    </div>
+                                    <div class="col-auto">
+                                       <input type="radio" formControlName="sortOrder" id="test1" value="1"  checked>
+                                       <label for="test1">Ascending</label>
+                                    </div>
+                                    <div class="col-auto">
+                                       <input type="radio" formControlName="sortOrder" id="test2" value="-1" >
+                                       <label for="test2">Descending</label>
+                                    </div>
+                                 </div>
+                                 <div class="row date-field">
+                                    <div  class="col-12">
+                                       <label for="">Created Date :</label>
+                                    </div>
+                                    <div  class="col-auto">
+                                       <div class="inp-wrp clndr" (click)="FromDate.toggle()">
+                                          <input type="text" class="form-control" placeholder="From Date" formControlName="fromDate" ngbDatepicker #FromDate="ngbDatepicker">
+                                          <span  ><img src="../../assets/img/Calander.svg" alt=""></span>
+                                       </div>
+                                    </div>
+                                    <div class="col-auto">
+                                       <div class="inp-wrp clndr" (click)="EndDate.toggle()">
+                                         <input type="text" class="form-control" placeholder="End Date" formControlName="toDate" ngbDatepicker #EndDate="ngbDatepicker">
+                                          <span><img src="../../assets/img/Calander.svg" alt=""></span>
+                                       </div>
+                                    </div>
+                                 </div>
+                                </div>
+                              <div class="btn-area">
+                                 <button class="link" (click)="clearFilter()">Clear All Filters</button>
+                                 <div class="two-btn">
+                                    <button type="button" class="btn-common close "
+                                       fdprocessedid="lhg78q"  (click)="$event.stopPropagation(); myDrop.close()">Close</button>
+                                    <button type="submit" class="save btn-common green-btn"
+                                       fdprocessedid="3xp6zs">Apply</button>
+                                 </div>
+                              </div>
+                             </form>
+                        </div>
+  
+                        <div class="create-btn mx-2">
+                           <button class="btn-common green-btn" type="button" (click)="openAddStoreModal(addStoreModal)">
+                              <span><img src="../../assets/img/create.svg" alt="img"></span> <span> Add Store</span>
+                           </button>
+                           <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                                <button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="Close">
+                                </button>
+                              <div class="toast-body">
+                                 <div class="icon-wrp">
+                                    <img class="" src="../../assets/img/sad-icon.svg" alt="">
+                                 </div>
+                                 <div>
+                                 <h5 class="title">Yikes. Something went wrong.</h5>
+                                 <p class="sm-txt">We're sorry that you have to experience some problems! Please try again latter.</p>
+                                 </div>
+                              </div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+             </div>
+          </div>
+       </div>
+      
+       
+
+       <div class="table-wrapper table-responsive prospect-table" *ngIf="storeData.length>0; else nodatafound">
+          <table class="table table-striped">
+             <thead>
+                <tr>
+                   <th>
+                      <div class="tb-head"><span>Name </span> <span class="sort" (click)="toggleSort('name')"><img src="../../assets/../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Store Location</span> <span class="sort" (click)="toggleSort('location')"><img src="../../assets/../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Store Contact</span> <span class="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Date Created</span> <span class="sort" (click)="toggleSort('createdAt')"><img src="../../assets/../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   
+                  
+                   <th>Actions</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr *ngFor="let store of storeData">
+                   <td>
+                     <div class="table-content"><span class="name-img"><img *ngIf="store.image_name" [src]="store.image_name"
+                        alt="item"><img *ngIf="store.image_name==null" src="../../assets/img/item.png"
+                        alt="item"></span>{{store.name}}</div>
+                   </td>
+                   <td>{{store.location}}</td>
+                   <td>{{store.contact_number}}</td>
+                   <td>{{store.createdAt| date:'MMM dd, yyyy'}}</td>
+                   
+             
+                   <td>
+                      <div class="actions">
+                         <button class="btn btn-action view" (click)="openViewStoreModal(storeInfoModal,store)">
+                            <img src="../../assets/../../assets/img/eye-circle.svg" alt="eye">
+                            </button>
+                            <button class="btn btn-action edit" (click)="openEditStoreModal(editStoreModal,store)">
+                            <img src="../../assets/../../assets/img/edit.svg" alt="edit">
+                            </button>
+                            
+                             <button class="btn btn-action delete" type="button" (click)="deleteModal(deleteStoreModal,store)">
+                               <img src="../../assets/../../assets/img/delete.svg" alt="delete">
+                               </button>
+                            
+                           
+                        
+                      </div>
+                   </td>
+                </tr>
+                
+               
+             </tbody>
+          </table>
+       </div>
+       <ng-template #nodatafound> 
+         <app-nodatafound></app-nodatafound>
+       </ng-template>
+    </div>
+    
+
+    <!-- add new store modal -->
+    <ng-template #addStoreModal let-modal>
+      
+       <div class="create-modal">
+             <div class="modal-header">
+                <h5 class="modal-title" id="addStoreModalLabel">Add Store</h5>
+                <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+             </div>
+             <div class="modal-body">
+                <div class="lead-form">
+                   <form [formGroup]="storeAddForm" (ngSubmit)="addStore(modal)" enctype="multipart/form-data">
+                      <div class="scroll-modal-wrp">
+                         <div class="mb-lg-3 mb-sm-0 container-fluid">
+                            <div class="row ">
+                               <div class="col-12 d-flex justify-content-center pb-5">
+                                 <div class="round-img">
+                                    <label for="imageUpload" class="add-modal-img">
+                                        <input type="file" id="imageUpload" accept="image/*" style="display: none;"  (change)="onFileSelected($event)">
+                                        <img *ngIf="selectedFile" [src]="selectedFileUrl" alt="add" id="imagePreview" class="add-modal-img">
+                                        <img *ngIf="!selectedFile" src="../../assets/img/add_modal_ico.png" alt="add" id="imagePreview" class="add-modal-img">
+                                    </label>
+                                </div>
+                               </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="form-floating desig-inp">
+                                       <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="name">
+                                       <label for="floatingInput">Store Name <span class="star">*</span></label>
+                                       <span *ngIf="storeAddForm.get('name')?.hasError('required') && storeAddForm.get('name')?.dirty" class="error-txt form-error">*name is required</span> 
+                                    </div>
+                                 </div>
+                               <div class="col-md-6">
+                                  <div class="form-floating desig-inp">
+                                     <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="location">
+                                     <label for="floatingInput">Location <span class="star">*</span></label>
+                                     <span *ngIf="storeAddForm.get('location')?.hasError('required') && storeAddForm.get('location')?.dirty" class="error-txt form-error">*location is required</span> 
+                                    </div>
+                               </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-6">
+                                    <div class="form-floating desig-inp">
+                                       <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="contact_number">
+                                       <label for="floatingInput">ContactNumber <span class="star">*</span></label>
+                                       <span *ngIf="storeAddForm.get('contact_number')?.dirty && storeAddForm.get('contact_number')?.hasError('invalidContactNumber') && !storeAddForm.get('contact_number')?.hasError('required')" class="error-txt form-error">*Invalid Contact Number</span>
+                                       <span *ngIf="storeAddForm.get('contact_number')?.dirty && storeAddForm.get('contact_number')?.hasError('required')" class="error-txt form-error">*Contact Number is required</span>     
+
+                                    </div>
+                                 </div>
+                               <div class="col-md-6">
+                                  <div class="form-floating desig-inp">
+                                     <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="website">
+                                     <label for="floatingInput">Website </label>
+                                     <span *ngIf=" storeAddForm.get('website')?.hasError('invalidURL') " class="error-txt form-error">*Invalid Url</span>
+                                      
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="row">
+                               <div class="col-12">
+                                  <div class="form-floating desc-input">
+                                     <textarea type="text" class="form-control" id="floatingDesc" placeholder="Cooper" formControlName="description"></textarea>
+                                     <label for="floatingDesc">Add Description </label>
+                                     <span *ngIf="storeAddForm.get('description')?.hasError('required') && storeAddForm.get('description')?.dirty" class="error-txt form-error">*description is required</span> 
+
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="two-btn">
+                         <button type="button" class="btn-common close " (click)="closeModal(modal)">Close</button>
+                         <button type="submit" class="save btn-common green-btn" >Save</button>
+                      </div>
+                   </form>
+                </div>
+             </div>
+          </div>
+       
+    </ng-template>
+    
+    
+    <!-- info modal -->
+    <ng-template #storeInfoModal let-modal>
+    
+          <div class="modal-header">
+             <h5 class="modal-title" id="categoryInfoModalLabel">Store Info</h5>
+             <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+          </div>
+          <div class="modal-body">
+             <div class="col-12 d-flex justify-content-center pb-5">
+               <div class="round-img">
+                  <img *ngIf="storeView.image_name" [src]="storeView.image_name" alt="add" class="add-modal-img">
+                  <img *ngIf="storeView.image_name == null" src="../../assets/img/item.png" alt="add" class="add-modal-img">
+               </div>
+             </div>
+             <div class="view-wrap-list">
+                <div class="col-itemes">
+                   <div class="label-title">
+                      <span class="icon"> <img src="../../assets/img/store-icon.svg" alt=""> </span>
+                      <span class="title">Store Name</span>
+                   </div>
+                   <div class="label-value">
+                      {{storeView.name}}
+                   </div>
+                </div>
+                <div class="col-itemes">
+                   <div class="label-title">
+                      <span class="icon"> <img src="../../assets/img/store-locator.svg" alt=""> </span>
+                      <span class="title">Location</span>
+                   </div>
+                   <div class="label-value">
+                      {{storeView.location}}
+                   </div>
+                </div>
+                <div class="col-itemes">
+                   <div class="label-title">
+                      <span class="icon"> <img src="../../assets/img/phone-icon.svg" alt=""> </span>
+                      <span class="title">Contact Number</span>
+                   </div>
+                   <div class="label-value">
+                      {{storeView.contact_number}}
+                   </div>
+                </div>
+                <div class="col-itemes">
+                   <div class="label-title">
+                      <span class="icon"> <img src="../../assets/img/Website.svg" alt=""> </span>
+                      <span class="title">Website</span>
+                   </div>
+                   <div class="label-value">
+                      {{storeView.website}}
+                   </div>
+                </div>
+             </div>
+             <div class="inner-title">Description</div>
+             <div class="inner-desc">
+                {{storeView.description}}
+             </div>
+          </div>
+          <div class="modal-ftr">
+             <span class="created">Created date: {{storeView.createdAt | date :'M/d/yy, h:mm a'}}</span>
+             <div class="two-btn">
+                <button type="submit" class="btn-common close "
+                   (click)="closeModal(modal)">Close</button>
+                <button type="submit" class="save btn-common green-btn"
+                   (click)="openEditStoreModal(editStoreModal,storeView)">edit</button>
+             </div>
+          </div>
+    
+ 
+</ng-template>
+    <!-- delete-modal -->
+    <ng-template #deleteStoreModal let-modal>
+      <div class="employee-modal">
+         <div class="modal-header ">
+            <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+         </div>
+         <div class="modal-body">
+            <div class="profile-img"><img src="../../assets/img/delet-modal-icon.svg" alt="sign"></div>
+            <div class="popup-title">Are you sure you want to delete {{deleteItem}} Store?</div>
+            <div class="two-btn logout-btn justify-content-center">
+               <button type="button" class="btn-common close"  (click)="closeModal(modal)">Cancel</button>
+               <button type="button" class="save btn-common green-btn" (click)="deleteCategory(modal,storeId)">Confirm</button>
+            </div>
+         </div>
+       </div>
+        </ng-template>
+    <!-- edit-->
+    <ng-template #editStoreModal let-modal>
+     
+        <div class="create-modal">
+              <div class="modal-header">
+                 <h5 class="modal-title" id="addStoreModalLabel">edit Store</h5> 
+                 <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+              </div>
+              <div class="modal-body">
+               <div class="lead-form">
+                  <form [formGroup]="storeAddForm" (ngSubmit)="editStore(modal,storeId)" enctype="multipart/form-data">
+                     <div class="scroll-modal-wrp">
+                        <div class="mb-lg-3 mb-sm-0 container-fluid">
+                           <div class="row ">
+                              <div class="col-12 d-flex justify-content-center pb-5">
+                                 <div class="round-img">
+                                    <label for="imageUpload" class="add-modal-img">
+                                        <input type="file" id="imageUpload" accept="image/*" style="display: none;"  (change)="onFileSelected($event)">
+                                        <img *ngIf="selectedFile || selectedFileUrl" [src]="selectedFileUrl" alt="add"  class="add-modal-img">
+                                        <img *ngIf="!selectedFile && selectedFileUrl==undefined" src="../../assets/img/add_modal_ico.png" alt="add"  class="add-modal-img">
+                                    </label>
+                                </div>
+                              </div>
+                           </div>
+                           <div class="row ">
+                               <div class="col-md-6">
+                                   <div class="form-floating desig-inp">
+                                      <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="name">
+                                      <label for="floatingInput">Store Name <span class="star">*</span></label>
+                                      <span *ngIf="storeAddForm.get('name')?.hasError('required') && storeAddForm.get('name')?.dirty" class="error-txt form-error">*name is required</span> 
+
+                                   </div>
+                                </div>
+                              <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="location">
+                                    <label for="floatingInput">Location <span class="star">*</span></label>
+                                    <span *ngIf="storeAddForm.get('location')?.hasError('required') && storeAddForm.get('location')?.dirty" class="error-txt form-error">*location is required</span> 
+
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row ">
+                               <div class="col-md-6">
+                                   <div class="form-floating desig-inp">
+                                      <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="contact_number">
+                                      <label for="floatingInput">ContactNumber <span class="star">*</span></label>
+                                      <span *ngIf="storeAddForm.get('contact_number')?.dirty && storeAddForm.get('contact_number')?.hasError('invalidContactNumber') && !storeAddForm.get('contact_number')?.hasError('required')" class="error-txt form-error">*Invalid Contact Number</span>
+                                      <span *ngIf="storeAddForm.get('contact_number')?.dirty && storeAddForm.get('contact_number')?.hasError('required')" class="error-txt form-error">*Contact Number is required</span>     
+                                   </div>
+                                </div>
+                              <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                    <input type="text" class="form-control" id="floatingName" placeholder="Ronald" formControlName="website">
+                                    <label for="floatingInput">Website </label>
+                                    <span *ngIf=" storeAddForm.get('website')?.hasError('invalidURL') " class="error-txt form-error">*Invalid Url</span>
+
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="row">
+                              <div class="col-12">
+                                 <div class="form-floating desc-input">
+                                    <textarea type="text" class="form-control" id="floatingDesc" placeholder="Cooper" formControlName="description"></textarea>
+                                    <label for="floatingDesc">Add Description </label>
+                                    <span *ngIf="storeAddForm.get('description')?.hasError('required') && storeAddForm.get('description')?.dirty" class="error-txt form-error">*description is required</span> 
+
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="two-btn">
+                        <button type="button" class="btn-common close " (click)="closeModal(modal)">Close</button>
+                        <button type="submit" class="save btn-common green-btn" >Save</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+           </div>
+        
+     </ng-template>
+     <div class="container-fluid paginations" *ngIf="storeData.length>0">
+      <div class="row">
+        <div class="pagination-iiner d-flex">
+           <div class="rows-select">
+             <span class="txt">Rows per page</span>
+             <select name="selectRows" id="selectRows" class="form-control" [(ngModel)]="pageSize" (click)="getStoreData({pageLimit:this.pageSize})">
+               <option value="10">10</option>
+               <option value="20">20</option>
+               <option value="50">50</option>
+               <option value="100">100</option>
+             </select>
+           </div>
+           <div class="result-txt">
+              Showing data {{ (currentPage - 1) * pageSize + 1 }}
+              to {{ currentPage * pageSize < totalItems ? currentPage * pageSize : totalItems }} entries
+            </div>    
+           <div class="page-count">
+             <nav aria-label="Page navigation example">
+               <ul class="pagination justify-content-center">
+                 <li class="page-item" [class.disabled]="currentPage === 1" (click)="currentPage !== 1 && onPageChange(currentPage - 1)">
+                   <a class="page-link"  aria-label="Previous">
+                     <img src="../../assets/img/pagenation-prev.svg" alt="Previous">
+                   </a>
+                 </li>
+                 <li class="page-item" *ngFor="let page of gettotalPagesArray()" [class.active]="currentPage === page">
+                   <a class="page-link" style="cursor:pointer;"  (click)="onPageChange(page)">{{ page }}</a>
+                 </li>
+                 <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="currentPage !== totalPages && onPageChange(currentPage + 1)">
+                   <a class="page-link"  aria-label="Next">
+                     <img src="../../assets/img/pagenation-next.svg" alt="Next">
+                   </a>
+                 </li>
+               </ul>
+             </nav>
+           </div>
+         </div>
+         
+      </div>
+   </div>
+</div>

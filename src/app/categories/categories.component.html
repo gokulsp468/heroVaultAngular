@@ -1,0 +1,357 @@
+<div class="prospect">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="top-sec d-flex">
+             <div class="col-lg-4 col-12 ">
+                <div class="heading left-sec">Category Management</div>
+             </div>
+             <div class=" col-lg-8 col-12">
+                <div class="right-sec">
+                   <div class="search-group mx-2">
+                      <div class="input-group">
+                         <span class="input-group-text"><img src="../../assets/img/search-normal.svg" alt="sch"></span>
+                         <input type="text" class="form-control" placeholder="Search..." #searchBox  (input)="performSearch($event)">
+
+                         <span class="input-group-text search-clear" (click)="clearSearchBox()"><img src="../../assets/img/modal-close.svg" alt="close" ></span>
+                      </div>
+                   </div>
+
+                   <div class="filter-items">
+                      <div class="filter dropdown mx-2" ngbDropdown #myDrop="ngbDropdown">
+                         <button class="btn-common dropdown-toggle" type="button" id="dropdownBasic1" ngbDropdownToggle >
+                            <span><img src="../../assets/img/filter.svg" alt="filter"></span><span>Filter</span>
+                         </button>
+                         <form  [formGroup]="filterForm" (ngSubmit)="filter()" class="dropdown-menu filter-drp dropdown-menu-end " ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <h3 class="filt-title">
+                               Filter By
+                            </h3>
+
+                            <div class="form">
+                               <div class="row inline-btm">
+                                
+                                  <div class="col-auto">
+                                     <label for="">Sort By :</label>
+                                  </div>
+                                  <div class="col-auto">
+                                     <input type="radio" formControlName="sortOrder" id="test1" value="1"  checked>
+                                     <label for="test1">Ascending</label>
+                                  </div>
+                                  <div class="col-auto">
+                                     <input type="radio" formControlName="sortOrder" id="test2" value="-1" >
+                                     <label for="test2">Descending</label>
+                                  </div>
+                               </div>
+                               <div class="row date-field">
+                                  <div  class="col-12">
+                                     <label for="">Created Date :</label>
+                                  </div>
+                                  <div  class="col-auto">
+                                     <div class="inp-wrp clndr" (click)="FromDate.toggle()">
+                                        <input type="text" class="form-control" placeholder="From Date" formControlName="fromDate" ngbDatepicker #FromDate="ngbDatepicker">
+                                        <span  ><img src="../../assets/img/Calander.svg" alt=""></span>
+                                     </div>
+                                  </div>
+                                  <div class="col-auto">
+                                     <div class="inp-wrp clndr" (click)="EndDate.toggle()">
+                                       <input type="text" class="form-control" placeholder="End Date" formControlName="toDate" ngbDatepicker #EndDate="ngbDatepicker">
+                                        <span><img src="../../assets/img/Calander.svg" alt=""></span>
+                                     </div>
+                                  </div>
+                               </div>
+                              </div>
+                            <div class="btn-area">
+                               <button class="link" (click)="clearFilter()">Clear All Filters</button>
+                               <div class="two-btn">
+                                  <button type="button" class="btn-common close "
+                                     fdprocessedid="lhg78q"  (click)="$event.stopPropagation(); myDrop.close()">Close</button>
+                                  <button type="submit" class="save btn-common green-btn"
+                                     fdprocessedid="3xp6zs">Apply</button>
+                               </div>
+                            </div>
+                           </form>
+                      </div>
+
+                      <div class="create-btn mx-2">
+                         <button class="btn-common green-btn" type="button" (click)="openAddCategoryModal(addCategoryModal)">
+                            <span><img src="../../assets/img/create.svg" alt="img"></span> <span> Add category</span>
+                         </button>
+                         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                              <button type="button" class="ml-2 mb-1 btn-close" data-dismiss="toast" aria-label="Close">
+                              </button>
+                            <div class="toast-body">
+                               <div class="icon-wrp">
+                                  <img class="" src="../../assets/img/sad-icon.svg" alt="">
+                               </div>
+                               <div>
+                               <h5 class="title">Yikes. Something went wrong.</h5>
+                               <p class="sm-txt">We're sorry that you have to experience some problems! Please try again latter.</p>
+                               </div>
+                            </div>
+                          </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+       <ng-template #addCategoryModal let-modal>
+                <div class="modal-header">
+                   <h5 class="modal-title" id="createLeadModalLabel">Add Category</h5>
+                   <button type="button" class="btn-close" (click)="closeModal(modal)"
+                      aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  
+                   <div class="lead-form">
+                      <form [formGroup]="categoryAddForm" (ngSubmit)="addCategory(modal)" enctype="multipart/form-data">
+                         <div class="scroll-modal-wrp">
+                            <div class="mb-lg-3 mb-sm-0 container-fluid">
+                               <div class="row ">
+                                 <div class="col-12 d-flex justify-content-center pb-5">
+                                    <div class="round-img">
+                                        <label for="imageUpload" class="add-modal-img">
+                                            <input type="file" id="imageUpload" accept="image/*" style="display: none;"  (change)="onFileSelected($event)">
+                                            <img *ngIf="selectedFile" [src]="selectedFileUrl" alt="add" id="imagePreview" class="add-modal-img">
+                                            <img *ngIf="!selectedFile" src="../../assets/img/add_modal_ico.png" alt="add" id="imagePreview" class="add-modal-img">
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                  <div class="col-12">
+                                     <div class="form-floating desig-inp">
+                                        <input type="text" class="form-control" id="floatingName"
+                                        formControlName="name"
+                                           placeholder="Ronald">
+                                        <label for="floatingInput">Category Name <span
+                                              class="star">*</span></label>
+                                              <span *ngIf="categoryAddForm.get('name')?.hasError('required') && categoryAddForm.get('name')?.dirty" class="error-txt form-error">*name is required</span> 
+                                     </div>
+                                  </div>
+                                  <div class="col-12">
+                                     <div class="form-floating desc-input">
+                                        <textarea type="text" class="form-control" id="floatingDesc"
+                                        formControlName="description"
+                                           placeholder="Cooper"></textarea>
+                                        <label for="floatingPassword">Add Description </label>
+                                        <span *ngIf="categoryAddForm.get('description')?.hasError('required') && categoryAddForm.get('description')?.dirty" class="error-txt form-error">*name is required</span>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="modal-ftr">
+                            <div class="two-btn">
+                               <button type="button"  class="btn-common close"
+                                   (click)="closeModal(modal)">Close</button>
+
+
+                               <button type="submit" class="save btn-common green-btn"
+                                  >Save</button>
+                            </div>
+                         </div>
+                         </form>
+                   </div>
+                </div>
+            </ng-template>
+       <!-- category info modal -->
+       <ng-template #categoryInfoModal let-modal>
+                <div class="modal-header">
+                   <h5 class="modal-title" id="categoryInfoModalLabel">Category Info</h5>
+                   <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+                </div>
+                <div class="modal-body">
+                   <div class="col-12 d-flex justify-content-center pb-5">
+                      <div class="round-img">
+                         <img *ngIf="categoryView.image" [src]="categoryView.image" alt="add" class="add-modal-img">
+                         <img *ngIf="categoryView.image==null" src="../../assets/img/item.png" alt="add" class="add-modal-img">
+                      </div>
+                   </div>
+                   
+                   <div class="inner-title">{{categoryView.name}}</div>
+                   <div class="inner-desc">
+                      {{categoryView.description}}
+                   </div>
+                </div>
+                <div class="modal-ftr">
+                   <span class="created">Created date: {{categoryView.createdAt | date:'short'}}</span>
+                   <div class="two-btn">
+                      <button type="button" class="btn-common close "
+                      (click)="closeModal(modal)">Close</button>
+                      <button type="button" class="save btn-common green-btn"
+                        (click)="openEditCategoryModal(editCategoryModal,categoryView)">edit</button>
+                   </div>
+                </div>
+            </ng-template>
+        <!--edit modal-->    
+        <ng-template #editCategoryModal let-modal>
+         <div class="modal-header">
+            <h5 class="modal-title" id="createLeadModalLabel">Edit Category</h5>
+            <button type="button" class="btn-close" (click)="closeModal(modal)"
+               aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+           
+            <div class="lead-form">
+               <form [formGroup]="categoryAddForm" (ngSubmit)="editCategory(modal,catId)" enctype="multipart/form-data">
+                  <div class="scroll-modal-wrp">
+                     <div class="mb-lg-3 mb-sm-0 container-fluid">
+                        <div class="row ">
+                          <div class="col-12 d-flex justify-content-center pb-5">
+                             <div class="round-img">
+                                 <label for="imageUpload" class="add-modal-img">
+                                     <input type="file" id="imageUpload" accept="image/*" style="display: none;"  (change)="onFileSelected($event)">
+                                     <img *ngIf="selectedFile || selectedFileUrl" [src]="selectedFileUrl" alt="add" id="imagePreview" class="add-modal-img">
+                                     <img *ngIf="!selectedFile && selectedFileUrl==undefined" src="../../assets/img/add_modal_ico.png" alt="add" id="imagePreview" class="add-modal-img">
+                                 </label>
+                             </div>
+                         </div>
+                         
+                           <div class="col-12">
+                              <div class="form-floating desig-inp">
+                                 <input type="text" class="form-control" id="floatingName"
+                                 formControlName="name"
+                                    placeholder="Ronald">
+                                 <label for="floatingInput">Category Name <span
+                                       class="star">*</span></label>
+                                       <span *ngIf="categoryAddForm.get('name')?.hasError('required') && categoryAddForm.get('name')?.dirty" class="error-txt form-error">*name is required</span> 
+                              </div>
+                           </div>
+                           <div class="col-12">
+                              <div class="form-floating desc-input">
+                                 <textarea type="text" class="form-control" id="floatingDesc"
+                                 formControlName="description"
+                                    placeholder="Cooper"></textarea>
+                                 <label for="floatingPassword">Add Description </label>
+                                 <span *ngIf="categoryAddForm.get('description')?.hasError('required') && categoryAddForm.get('description')?.dirty" class="error-txt form-error">*name is required</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="modal-ftr">
+                     <div class="two-btn">
+                        <button type="button"  class="btn-common close"
+                            (click)="closeModal(modal)">Close</button>
+
+
+                        <button type="submit" class="save btn-common green-btn"
+                           >Save</button>
+                     </div>
+                  </div>
+                  </form>
+            </div>
+         </div>
+        </ng-template>
+ <!-- category delete modal -->
+        <ng-template #deleteCategoryModal let-modal>
+            <div class="employee-modal">
+              <div class="modal-header ">
+                 <button type="button" class="btn-close" (click)="closeModal(modal)"></button>
+              </div>
+              <div class="modal-body">
+                 <div class="profile-img"><img src="../../assets/img/delet-modal-icon.svg" alt="sign"></div>
+                 <div class="popup-title">Are you sure you want to delete {{deleteItem}} Store?</div>
+                 <div class="two-btn logout-btn justify-content-center">
+                    <button type="button" class="btn-common close"  (click)="closeModal(modal)">Cancel</button>
+                    <button type="button" class="save btn-common green-btn" (click)="deleteCategory(modal,catId)">Confirm</button>
+                 </div>
+              </div>
+            </div>
+            </ng-template>
+      
+    
+       <div class="table-wrapper table-responsive prospect-table" *ngIf="categoryData.length>0; else nodatafound">
+          <table  class="table table-striped">
+             <thead>
+                <tr>
+                   <th>
+                      <div class="tb-head"><span>Name </span> <span class="sort"><img src="../../assets/img/sort.svg"
+                               alt="sort" (click)="toggleSort('name')"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Created Date</span> <span class="sort"><img
+                               src="../../assets/img/sort.svg" alt="sort" (click)="toggleSort('createdAt')"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Description </span> <span class="sort"><img
+                               src="../../assets/img/sort.svg" alt="sort" (click)="toggleSort('description')"></span></div>
+                   </th>
+
+                   <th>Actions</th>
+                </tr>
+             </thead>
+             <tbody>
+                <tr *ngFor="let category of categoryData">
+                   <td>
+                      <div class="table-content"><span class="name-img"><img *ngIf="category.image" [src]="category.image"
+                               alt="item"><img *ngIf="category.image==null" src="../../assets/img/item.png"
+                               alt="item"></span>{{category.name}}</div>
+                   </td>
+                   <td>{{category.createdAt| date:'MMM dd, yyyy'}}</td>
+                   <td class="nowrap">{{category.description | slice: 0 : 30}}</td>
+
+                   <td>
+                      <div class="actions">
+                         <button class="btn btn-action view" type="button" (click)="openViewCategoryModal(categoryInfoModal,category)">
+                            <img src="../../assets/img/eye-circle.svg" alt="eye">
+                         </button>
+                         <button class="btn btn-action edit" (click)="openEditCategoryModal(editCategoryModal,category)">
+                            <img src="../../assets/img/edit.svg" alt="edit">
+                         </button>
+                         
+                         <button class="btn btn-action delete" type="button" (click)="deleteModal(deleteCategoryModal,category)">
+                            <img src="../../assets/img/delete.svg" alt="delete">
+                         </button>
+
+                      </div>
+                   </td>
+                </tr>
+                
+             </tbody>
+          </table>
+          
+       </div>
+       <ng-template #nodatafound> 
+         <app-nodatafound></app-nodatafound>
+       </ng-template>
+    </div>
+    <div class="container-fluid paginations" *ngIf="categoryData.length>0">
+       <div class="row">
+         <div class="pagination-iiner d-flex">
+            <div class="rows-select">
+              <span class="txt">Rows per page</span>
+              <select name="selectRows" id="selectRows" class="form-control" [(ngModel)]="pageSize" (click)="getcategoryData({pageLimit:this.pageSize})">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+            <div class="result-txt">
+               Showing data {{ (currentPage - 1) * pageSize + 1 }}
+               to {{ currentPage * pageSize < totalItems ? currentPage * pageSize : totalItems }} entries
+             </div>    
+            <div class="page-count">
+              <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item" [class.disabled]="currentPage === 1" (click)="currentPage !== 1 && onPageChange(currentPage - 1)">
+                    <a class="page-link"  aria-label="Previous">
+                      <img src="../../assets/img/pagenation-prev.svg" alt="Previous">
+                    </a>
+                  </li>
+                  <li class="page-item" *ngFor="let page of gettotalPagesArray()" [class.active]="currentPage === page">
+                    <a class="page-link" style="cursor:pointer;"  (click)="onPageChange(page)">{{ page }}</a>
+                  </li>
+                  <li class="page-item" [class.disabled]="currentPage === totalPages" (click)="currentPage !== totalPages && onPageChange(currentPage + 1)">
+                    <a class="page-link"  aria-label="Next">
+                      <img src="../../assets/img/pagenation-next.svg" alt="Next">
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          
+       </div>
+    </div>
+ </div>

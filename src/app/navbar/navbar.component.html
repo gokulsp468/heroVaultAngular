@@ -1,0 +1,84 @@
+<div class="dashboard-wrp">
+    <div class="sidebar">
+       <div class="st-wrp">
+          <button class="sidebar-toggle">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
+      </div>
+       <div class="logoWrp">
+          <a  class="logo">
+             <img src="../../assets/img/logo.png" alt="dashboard">
+          </a>
+       </div>
+
+       <div class="menuWrp">
+
+          <ul class="menu">
+
+             <li class="menu-link">
+                 <a routerLink="/dashboard" class="link active" >
+                     <span class="ico">
+                         <img src="../../assets/img/category-icon.svg" alt="">
+                     </span>
+                     <span class="txt">Category Management</span>
+                 </a>
+             </li>  
+             
+             <li class="menu-link">
+                 <a routerLink="store" class="link">
+                     <span class="ico">
+                         <img src="../../assets/img/store-mngmnt.svg" alt="prospect">
+                     </span>
+                     <span class="txt">Store Management</span>
+                 </a>
+             </li> 
+
+             <li class="menu-link">
+                 <a routerLink="discount" class="link">
+                     <span class="ico">
+                         <img src="../../assets/img/discount-mngmnt.svg" alt="workers">
+                     </span>
+                     <span class="txt">Discount Management</span>
+                 </a>
+             </li> 
+
+             <li class="menu-link">
+                 <a class="link" routerLink="user">
+                     <span class="ico">
+                         <img src="../../assets/img/usr-mngmnt.svg" alt="usr manage">
+                     </span>
+                     <span class="txt">User Management</span>
+                 </a>
+                 <!-- <a class="link submenu collapsed" data-bs-toggle="collapse" routerLink="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <span class="ico">
+                        <img src="../../assets/img/usr-mngmnt.svg" alt="usr manage">
+                    </span>
+                    <span class="txt">Sub Menu</span>
+                </a>
+                 
+                 <div class="collapse" id="collapseExample">
+                     <div class="submenu">
+                        <ul>
+                         <li>submenu</li>
+                        </ul>
+                     </div>
+                   </div> -->
+             </li> 
+
+         </ul>
+       </div>
+       <div class="side-btm">
+          <img src="../../assets/img/sidenav-btm-img.png" alt="side nav btm img">
+       </div>
+
+    </div>
+
+    <div class="page-cont-wrp">
+       <app-header></app-header>
+       <div class="page-body">
+        <router-outlet></router-outlet>
+       </div>
+    </div>
+ </div>

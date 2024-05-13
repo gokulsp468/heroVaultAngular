@@ -1,0 +1,851 @@
+<div class="prospect">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="top-sec d-flex">
+             <div class="col-lg-3 col-12 ">
+                <div class="heading left-sec">Discount Management</div>
+             </div>
+             <div class=" col-lg-9 col-12">
+                <div class="right-sec">
+                   <div class="search-group mx-2">
+                      <div class="input-group">
+                         <span class="input-group-text"><img src="../../assets/img/search-normal.svg" alt="sch"></span>
+                         <input type="text" class="form-control" placeholder="Search...">
+                      </div>
+                   </div>
+                   <div class="filter-items">
+                    <div class="filter dropdown mx-2" ngbDropdown #myDrop="ngbDropdown">
+                        <button class="btn-common dropdown-toggle" type="button" id="dropdownBasic1" ngbDropdownToggle >
+                           <span><img src="../../assets/img/filter.svg" alt="filter"></span><span>Filter</span>
+                        </button>
+                        <div class="dropdown-menu filter-drp dropdown-menu-end " ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                           <h3 class="filt-title">
+                              Filter By
+                           </h3>
+
+                           <div class="form">
+                              <div class="row inline-btm">
+                                 <div class="col-auto">
+                                    <label for="">Sort By :</label>
+                                 </div>
+                                 <div class="col-auto">
+                                    <input type="radio" id="test1" name="radio-group" checked>
+                                    <label for="test1">Ascending</label>
+                                 </div>
+                                 <div class="col-auto">
+                                    <input type="radio" id="test2" name="radio-group">
+                                    <label for="test2">Descending</label>
+                                 </div>
+                              </div>
+                              <div class="row date-field">
+                                <div  class="col-12">
+                                   <label for="">Created Date :</label>
+                                </div>
+                                <div  class="col-auto">
+                                   <div class="inp-wrp clndr" (click)="FromDate.toggle()">
+                                      <input type="text" class="form-control" value="From Date"
+                                      ngbDatepicker
+                                            #FromDate="ngbDatepicker">
+                                      <span  ><img src="../../assets/img/Calander.svg" alt=""></span>
+                                   </div>
+                                </div>
+                                <div class="col-auto">
+                                   <div class="inp-wrp clndr" (click)="EndDate.toggle()">
+                                      <input type="text" class="form-control" value="End Date"ngbDatepicker
+                                      #EndDate="ngbDatepicker">
+                                      <span><img src="../../assets/img/Calander.svg" alt=""></span>
+                                   </div>
+                                </div>
+                             </div>
+                           </div>
+                           <div class="btn-area">
+                              <button class="link">Clear All Filters</button>
+                              <div class="two-btn">
+                                 <button type="submit" class="btn-common close "
+                                    fdprocessedid="lhg78q"  (click)="$event.stopPropagation(); myDrop.close()">Close</button>
+                                 <button type="submit" class="save btn-common green-btn"
+                                    fdprocessedid="3xp6zs">Apply</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                   <div class="create-btn mx-2">
+                      <button class="btn-common green-btn" type="button" (click)="openAddDiscountModal(addDiscountModal)">
+                      <span><img src="../../assets/img/create.svg" alt="img" ></span> <span> Create Discount</span>
+                      </button>
+                   </div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+      
+       
+
+       <div class="table-wrapper table-responsive prospect-table">
+          <table class="table table-striped">
+             <thead>
+                <tr>
+                   <th>
+                      <div class="tb-head"><span>Discount Name </span> <span class="sort"><img src="../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                     <div class="tb-head"><span>Description</span> <span class="sort"><img src="../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Store Location</span> <span class="sort"><img src="../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Category</span> <span class="sort"><img src="../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   <th>
+                      <div class="tb-head"><span>Date Created</span> <span class="sort"><img src="../../assets/img/sort.svg" alt="sort"></span></div>
+                   </th>
+                   
+                  
+                   <th>Actions</th>
+                </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view" type="button" (click)="openViewDiscountModal(discountInfoModal)">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit" (click)="openEditDiscountModal(editDiscountModal)">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" (click)="deleteModal(deleteDiscountModal)">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+
+                 <tr>
+                     <td>
+                         <div class="table-content"><span class="name-img"><img src="../../assets/img/item.png" alt="item"></span>Rose Hughes</div>
+                     </td>
+                     <td>
+                         Lorem ipsum dolor sit amet.
+                     </td>
+
+                     <td>
+                         Los Banos, California, 23456
+                     </td>
+
+                     <td>
+                         Clothing
+                     </td>
+
+                     <td>
+                         21/02/2024 01:23 PM
+                     </td>
+
+                     <td>
+                         <div class="actions">
+                             <button class="btn btn-action view">
+                                 <img src="../../assets/img/eye-circle.svg" alt="eye">
+                             </button>
+                             <button class="btn btn-action edit">
+                             <img src="../../assets/img/edit.svg" alt="edit">
+                             </button>
+                             
+                                 <button class="btn btn-action delete" type="button" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                                 <img src="../../assets/img/delete.svg" alt="delete">
+                                 </button>
+                             
+                             
+                         
+                         </div>
+                     </td>
+                 </tr>
+             </tbody>
+          </table>
+       </div>
+    </div>
+    <div class="container-fluid paginations">
+       <div class="row">
+       <div class="pagination-iiner d-flex">
+          <div class="result-txt"> Showing data 1 to 100 entries </div>
+          <div class="page-count">
+             <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                   <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Previous">
+                      <img src="../../assets/img/left.svg" alt="drop">
+                      </a>
+                   </li>
+                   <li class="page-item  active"><a class="page-link" href="#">1</a></li>
+                   <li class="page-item"><a class="page-link" href="#">2</a></li>
+                   <li class="page-item"><a class="page-link" href="#">3</a></li>
+                   <li class="page-item"><a class="page-link" href="#">4</a></li>
+                   <li class="page-item">
+                      <a class="page-link" href="#" aria-label="Next">
+                      <img src="../../assets/img/right.svg" alt="drop">
+                      </a>
+                   </li>
+                </ul>
+             </nav>
+          </div>
+       </div>
+    </div>
+    </div>
+
+    <!-- add new store modal -->
+ <ng-template #addDiscountModal let-modal>
+           <div class="modal-header">
+              <h5 class="modal-title" id="addStoreModalLabel">Add Discount</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+           </div>
+           <div class="modal-body">
+              <div class="lead-form">
+                 <form action="#" class="d-flex flex-column">
+                     <div class="scroll-modal-wrp">
+                     <div class="mb-lg-3 mb-sm-0 container-fluid">
+
+                         <div class="row ">
+                             <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                 <input type="text" class="form-control" id="floatingName" placeholder="Ronald" value="Get 50% off">
+                                 <label for="floatingInput">Discount Titile <span class="star">*</span></label>
+                                 </div>
+                             </div>
+                             <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                 <select class="form-select" name="select" id="selectStore">
+                                     <option value="">Select Store</option>
+                                 </select>
+                                 <label for="selectStore">Select Store <span class="star">*</span></label>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row ">
+                             <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                     <select class="form-select" name="select" id="storeLocation">
+                                         <option value="">Select Location</option>
+                                     </select>
+                                 <label for="storeLocation">Store Location </label>
+                                 </div>
+                             </div>
+                             <div class="col-md-6">
+                                 <div class="form-floating desig-inp">
+                                     <select class="form-select" name="select" id="selectCtaegory">
+                                         <option value="">Select Category</option>
+                                     </select>
+                                 <label for="selectCtaegory">Category </label>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-12">
+                                 <div class="form-floating desc-input">
+                                 <textarea type="text" class="form-control" id="floatingDesc" placeholder="Cooper"></textarea>
+                                 <label for="floatingPassword">Add Description </label>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="row">
+                             <div class="col-12 d-flex justify-content-center">
+                             <div class="upload-area">
+                                 <div class="inner-content">
+                                     <input type="file" id="real-file" hidden="hidden" />
+                                     <div class="upload-icon" id="custom-button">
+                                         <img src="../../assets/img/upload-image-new.svg" alt="">
+                                     </div>
+                                     <div class="upload-title">Drop your image here, <span>Or browse</span></div>
+                                     <span class="info-txt">Support JPG, JPEG2000, PNG</span>
+                                     <span id="custom-text" class="d-none">No file chosen, yet.</span>
+                                 </div>
+                             </div>
+                             
+                             </div>
+
+                             <div class="col-12">
+                                 <div class="view-wrap-list">
+                                     <div class="uploaded-itm">
+                                         <img src="../../assets/img/phones1.jpg" alt="preview">
+                                         <button class="btn-remove">
+                                             <img src="../../assets/img/modal-close.svg" alt="">
+                                         </button>
+                                     </div>
+
+                                     <div class="uploaded-itm">
+                                         <img src="../../assets/img/phones1.jpg" alt="preview">
+                                         <button class="btn-remove">
+                                             <img src="../../assets/img/modal-close.svg" alt="">
+                                         </button>
+                                     </div>
+
+                                     <div class="uploaded-itm">
+                                         <img src="../../assets/img/phones1.jpg" alt="preview">
+                                         <button class="btn-remove">
+                                             <img src="../../assets/img/modal-close.svg" alt="">
+                                         </button>
+                                     </div>
+
+                                     
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     </div>
+                     <div class="two-btn">
+                         <button type="submit" class="btn-common close " data-bs-dismiss="modal">Close</button>
+                         <button type="submit" class="save btn-common green-btn" data-bs-dismiss="modal">Save</button>
+                     </div>
+                 </form>
+              </div>
+           </div>
+<!-- 
+           <div class="modal-footer">
+             
+           </div> -->
+        </ng-template>
+  <!-- add new store modal -->
+
+  <!-- discount view modal -->
+<ng-template #discountInfoModal let-modal>
+        <div class="modal-header">
+           <h5 class="modal-title" id="discountViewModalLabel">Discount Info</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal"
+              aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+           <div class="view-wrap-list">
+              <div class="col-itemes">
+                 <div class="label-title">
+                    <span class="icon"> <img src="../../assets/img/discount-title.svg" alt=""> </span>
+                    <span class="title">Discount Titile</span>
+                 </div>
+                 <div class="label-value">
+                     Get 50% off
+                 </div>
+              </div>
+              <div class="col-itemes">
+                 <div class="label-title">
+                    <span class="icon"> <img src="../../assets/img/store-locator.svg" alt=""> </span>
+                    <span class="title">Location</span>
+                 </div>
+                 <div class="label-value">
+                    Sara’s Food Pvt.Ltd
+                 </div>
+              </div>
+              <div class="col-itemes">
+                 <div class="label-title">
+                    <span class="icon"> <img src="../../assets/img/store-locator.svg" alt=""> </span>
+                    <span class="title">Store Location</span>
+                 </div>
+                 <div class="label-value">
+                     Los Banos, California,
+                 </div>
+              </div>
+              <div class="col-itemes">
+                 <div class="label-title">
+                    <span class="icon"> <img src="../../assets/img/Website.svg" alt=""> </span>
+                    <span class="title">Category</span>
+                 </div>
+                 <div class="label-value">
+                     Electronics
+                 </div>
+              </div>
+           </div>
+           <div class="inner-title">Description</div>
+           <div class="inner-desc pb-0">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+              has been the industry’s standard dummy text ever since the 1500s, when an unknown
+              printer took a galley of type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised in the 1960s with the release of
+              Letraset
+           </div>
+           <div class="coupon-img">
+             <img class="" src="../../assets/img/discount-bnr-img.jpg" alt="">
+           </div>
+           <div class="no-coupon">
+             <img class="" src="../../assets/img/no-coupon-img.svg" alt="">
+             <div class="no-data-txt">
+                 No Image Found
+             </div>
+           </div>
+           
+        </div>
+
+        <div class="modal-footer">
+             <div class="modal-ftr">
+                 <div class="two-btn">
+                 <button type="submit" class="btn-common close "
+                     data-bs-dismiss="modal">Close</button>
+                 <button type="submit" class="save btn-common green-btn"
+                     data-bs-dismiss="modal">Save</button>
+                 </div>
+             </div>
+        </div>
+    </ng-template>
+<!-- discount edit modal -->
+<ng-template #editDiscountModal let-modal>
+    <div class="modal-header">
+       <h5 class="modal-title" id="addStoreModalLabel">Add Discount</h5>
+       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+       <div class="lead-form">
+          <form action="#" class="d-flex flex-column">
+              <div class="scroll-modal-wrp">
+              <div class="mb-lg-3 mb-sm-0 container-fluid">
+
+                  <div class="row ">
+                      <div class="col-md-6">
+                          <div class="form-floating desig-inp">
+                          <input type="text" class="form-control" id="floatingName" placeholder="Ronald" value="Get 50% off">
+                          <label for="floatingInput">Discount Titile <span class="star">*</span></label>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-floating desig-inp">
+                          <select class="form-select" name="select" id="selectStore">
+                              <option value="">Select Store</option>
+                          </select>
+                          <label for="selectStore">Select Store <span class="star">*</span></label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row ">
+                      <div class="col-md-6">
+                          <div class="form-floating desig-inp">
+                              <select class="form-select" name="select" id="storeLocation">
+                                  <option value="">Select Location</option>
+                              </select>
+                          <label for="storeLocation">Store Location </label>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div class="form-floating desig-inp">
+                              <select class="form-select" name="select" id="selectCtaegory">
+                                  <option value="">Select Category</option>
+                              </select>
+                          <label for="selectCtaegory">Category </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="form-floating desc-input">
+                          <textarea type="text" class="form-control" id="floatingDesc" placeholder="Cooper"></textarea>
+                          <label for="floatingPassword">Add Description </label>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-12 d-flex justify-content-center">
+                      <div class="upload-area">
+                          <div class="inner-content">
+                              <input type="file" id="real-file" hidden="hidden" />
+                              <div class="upload-icon" id="custom-button">
+                                  <img src="../../assets/img/upload-image-new.svg" alt="">
+                              </div>
+                              <div class="upload-title">Drop your image here, <span>Or browse</span></div>
+                              <span class="info-txt">Support JPG, JPEG2000, PNG</span>
+                              <span id="custom-text" class="d-none">No file chosen, yet.</span>
+                          </div>
+                      </div>
+                      
+                      </div>
+
+                      <div class="col-12">
+                          <div class="view-wrap-list">
+                              <div class="uploaded-itm">
+                                  <img src="../../assets/img/phones1.jpg" alt="preview">
+                                  <button class="btn-remove">
+                                      <img src="../../assets/img/modal-close.svg" alt="">
+                                  </button>
+                              </div>
+
+                              <div class="uploaded-itm">
+                                  <img src="../../assets/img/phones1.jpg" alt="preview">
+                                  <button class="btn-remove">
+                                      <img src="../../assets/img/modal-close.svg" alt="">
+                                  </button>
+                              </div>
+
+                              <div class="uploaded-itm">
+                                  <img src="../../assets/img/phones1.jpg" alt="preview">
+                                  <button class="btn-remove">
+                                      <img src="../../assets/img/modal-close.svg" alt="">
+                                  </button>
+                              </div>
+
+                              
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              </div>
+              <div class="two-btn">
+                  <button type="submit" class="btn-common close " data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="save btn-common green-btn" data-bs-dismiss="modal">Save</button>
+              </div>
+          </form>
+       </div>
+    </div>
+<!-- 
+    <div class="modal-footer">
+      
+    </div> -->
+ </ng-template>
+    <!-- delete-modal -->
+    <ng-template #deleteDiscountModal let-modal>
+        <div class="employee-modal">
+          <div class="modal-header ">
+             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+             <div class="profile-img"><img src="../../assets/img/delet-modal-icon.svg" alt="sign"></div>
+             <div class="popup-title">Are you sure you want to delete this Store?</div>
+             <div class="two-btn logout-btn justify-content-center">
+                <button type="submit" class="btn-common close"  data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="save btn-common green-btn"  data-bs-dismiss="modal">Confirm</button>
+             </div>
+          </div>
+        </div>
+        </ng-template>
+  
+    <!-- delete modal end -->
+ </div>
